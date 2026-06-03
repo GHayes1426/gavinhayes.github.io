@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gavin B Hayes | Cybersecurity Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --splunk-black: #0e1117;
+    --splunk-panel: #1a1f2e;
+    --splunk-panel-alt: #141824;
+    --splunk-border: #2a3050;
+    --splunk-border-bright: #3d4a6e;
+    --splunk-orange: #f58220;
+    --splunk-orange-dim: #c46a18;
+    --splunk-green: #65c637;
+    --splunk-green-dim: #3d7a20;
+    --splunk-blue: #5bc0de;
+    --splunk-blue-bright: #00a4e4;
+    --splunk-purple: #a97cce;
+    --splunk-red: #d93f3f;
+    --splunk-yellow: #f5c518;
+    --splunk-text: #c8d0e0;
+    --splunk-text-dim: #7a8aaa;
+    --splunk-text-bright: #e8edf5;
+    --splunk-header-bg: #0d1020;
+    --splunk-nav-height: 52px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--splunk-black);
+    color: var(--splunk-text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP NAV BAR ─────────────────────────────── */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--splunk-nav-height);
+    background: var(--splunk-header-bg);
+    border-bottom: 1px solid var(--splunk-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .splunk-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--splunk-orange);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  .splunk-logo .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--splunk-orange);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topbar-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--splunk-border-bright);
+  }
+
+  .topbar-app-name {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--splunk-text-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .topbar-nav {
+    display: flex;
+    gap: 2px;
+  }
+
+  .topbar-nav a {
+    padding: 6px 14px;
+    color: var(--splunk-text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+
+  .topbar-nav a:hover {
+    color: var(--splunk-text-bright);
+    background: rgba(255,255,255,0.05);
+    border-color: var(--splunk-border);
+  }
+
+  .topbar-nav a.active {
+    color: var(--splunk-orange);
+    background: rgba(245, 130, 32, 0.1);
+    border-color: rgba(245, 130, 32, 0.3);
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--splunk-green);
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 4px 10px;
+    background: rgba(101, 198, 55, 0.08);
+    border: 1px solid rgba(101, 198, 55, 0.2);
+    border-radius: 3px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    background: var(--splunk-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── MAIN LAYOUT ─────────────────────────────── */
+  .main-wrapper {
+    margin-top: var(--splunk-nav-height);
+    padding: 20px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── HERO SECTION ────────────────────────────── */
+  .hero-section {
+    background: var(--splunk-panel);
+    border: 1px solid var(--splunk-border);
+    border-radius: 4px;
+    padding: 36px 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 400px; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(245,130,32,0.04) 100%);
+    pointer-events: none;
+  }
+
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--splunk-orange), transparent);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--splunk-orange);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-label::before {
+    content: '//';
+    opacity: 0.5;
+  }
+
+  .hero-name {
+    font-family: 'Source Code Pro', monospace;
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 700;
+    color: var(--splunk-text-bright);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
+
+  .hero-name span {
+    color: var(--splunk-orange);
+  }
+
+  .hero-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--splunk-blue-bright);
+    margin-bottom: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-summary {
+    font-size: 14px;
+    color: var(--splunk-text);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .hero-tag.orange { color: var(--splunk-orange); border-color: rgba(245,130,32,0.3); background: rgba(245,130,32,0.07); }
+  .hero-tag.blue { color: var(--splunk-blue); border-color: rgba(91,192,222,0.3); background: rgba(91,192,222,0.07); }
+  .hero-tag.green { color: var(--splunk-green); border-color: rgba(101,198,55,0.3); background: rgba(101,198,55,0.07); }
+  .hero-tag.purple { color: var(--splunk-purple); border-color: rgba(169,124,206,0.3); background: rgba(169,124,206,0.07); }
+
+  .hero-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .hero-contact a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.15s;
+  }
+
+  .hero-contact a:hover { color: var(--splunk-orange); }
+
+  .hero-contact a::before {
+    content: '>';
+    color: var(--splunk-orange);
+    opacity: 0.6;
+  }
+
+  /* Hero stats panel */
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 200px;
+  }
+
+  .stat-card {
+    background: var(--splunk-panel-alt);
+    border: 1px solid var(--splunk-border);
+    border-radius: 3px;
+    padding: 14px 18px;
+    text-align: right;
+  }
+
+  .stat-value {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--splunk-orange);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: var(--splunk-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ── DASHBOARD GRID ──────────────────────────── */
+  .dashboard-row {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-1-2 { grid-template-columns: 1fr 2fr; }
+  .row-2-1 { grid-template-columns: 2fr 1fr; }
+  .row-full { grid-template-columns: 1fr; }
+
+  /* ── PANEL ───────────────────────────────────── */
+  .panel {
+    background: var(--splunk-panel);
+    border: 1px solid var(--splunk-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .panel-header {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--splunk-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0,0,0,0.2);
+  }
+
+  .panel-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--splunk-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-title-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--splunk-orange);
+  }
+
+  .panel-title-dot.blue { background: var(--splunk-blue-bright); }
+  .panel-title-dot.green { background: var(--splunk-green); }
+  .panel-title-dot.purple { background: var(--splunk-purple); }
+  .panel-title-dot.yellow { background: var(--splunk-yellow); }
+  .panel-title-dot.red { background: var(--splunk-red); }
+
+  .panel-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: rgba(245,130,32,0.15);
+    color: var(--splunk-orange);
+    border: 1px solid rgba(245,130,32,0.25);
+  }
+
+  .panel-body {
+    padding: 18px;
+  }
+
+  /* ── SECTION HEADERS ─────────────────────────── */
+  .section-anchor { 
+    margin-top: calc(-1 * var(--splunk-nav-height) - 10px);
+    padding-top: calc(var(--splunk-nav-height) + 10px);
+  }
+
+  /* ── EDUCATION ───────────────────────────────── */
+  .edu-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--splunk-border);
+  }
+
+  .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .edu-item:first-child { padding-top: 0; }
+
+  .edu-degree {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+    margin-bottom: 2px;
+  }
+
+  .edu-school {
+    font-size: 13px;
+    color: var(--splunk-blue-bright);
+    margin-bottom: 6px;
+  }
+
+  .edu-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .edu-meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .edu-meta-item .val {
+    color: var(--splunk-orange);
+  }
+
+  .edu-note {
+    font-size: 12px;
+    color: var(--splunk-text-dim);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ── EXPERIENCE ──────────────────────────────── */
+  .exp-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--splunk-border);
+  }
+
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-item:first-child { padding-top: 0; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
+
+  .exp-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--splunk-blue-bright);
+  }
+
+  .exp-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .exp-date .location {
+    display: block;
+    font-size: 10px;
+    margin-top: 2px;
+    color: var(--splunk-orange);
+    opacity: 0.7;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--splunk-text);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .exp-bullets li::before {
+    content: '○';
+    position: absolute;
+    left: 0;
+    color: var(--splunk-orange);
+    opacity: 0.6;
+    font-size: 10px;
+    top: 5px;
+  }
+
+  /* ── SKILLS ──────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .skill-category {
+    margin-bottom: 4px;
+  }
+
+  .skill-category-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--splunk-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(245,130,32,0.2);
+  }
+
+  .skill-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .skill-bar-label {
+    font-size: 12px;
+    color: var(--splunk-text);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .skill-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--splunk-orange);
+    transform-origin: left;
+    animation: barGrow 1s ease forwards;
+    transform: scaleX(0);
+  }
+
+  .skill-bar-fill.blue { background: var(--splunk-blue-bright); }
+  .skill-bar-fill.green { background: var(--splunk-green); }
+  .skill-bar-fill.purple { background: var(--splunk-purple); }
+  .skill-bar-fill.yellow { background: var(--splunk-yellow); }
+
+  @keyframes barGrow {
+    to { transform: scaleX(1); }
+  }
+
+  /* ── SKILL TAGS ─────────────────────────────── */
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .skill-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: var(--splunk-text);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--splunk-border-bright);
+    transition: all 0.15s;
+    cursor: default;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--splunk-orange);
+    color: var(--splunk-orange);
+    background: rgba(245,130,32,0.08);
+  }
+
+  /* ── CERTS ───────────────────────────────────── */
+  .cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--splunk-border);
+  }
+
+  .cert-item:last-child { border-bottom: none; }
+  .cert-item:first-child { padding-top: 0; }
+
+  .cert-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    background: rgba(245,130,32,0.1);
+    border: 1px solid rgba(245,130,32,0.2);
+  }
+
+  .cert-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+    margin-bottom: 2px;
+  }
+
+  .cert-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+  }
+
+  .cert-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .cert-status.in-progress {
+    background: rgba(245,197,24,0.12);
+    color: var(--splunk-yellow);
+    border: 1px solid rgba(245,197,24,0.25);
+  }
+
+  .cert-status.earned {
+    background: rgba(101,198,55,0.12);
+    color: var(--splunk-green);
+    border: 1px solid rgba(101,198,55,0.25);
+  }
+
+  /* ── PROJECTS ────────────────────────────────── */
+  .project-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--splunk-border);
+  }
+
+  .project-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .project-item:first-child { padding-top: 0; }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+
+  .project-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+  }
+
+  .project-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-orange);
+    white-space: nowrap;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--splunk-text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  /* ── CURRENTLY WORKING ON ────────────────────── */
+  .activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .activity-card {
+    background: var(--splunk-panel-alt);
+    border: 1px solid var(--splunk-border);
+    border-radius: 3px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .activity-card:hover {
+    border-color: var(--splunk-border-bright);
+  }
+
+  .activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .activity-card.orange::before { background: var(--splunk-orange); }
+  .activity-card.blue::before { background: var(--splunk-blue-bright); }
+  .activity-card.green::before { background: var(--splunk-green); }
+  .activity-card.purple::before { background: var(--splunk-purple); }
+  .activity-card.yellow::before { background: var(--splunk-yellow); }
+
+  .activity-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--splunk-text-dim);
+    margin-bottom: 6px;
+  }
+
+  .activity-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .activity-desc {
+    font-size: 12px;
+    color: var(--splunk-text-dim);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .activity-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    animation: barGrow 1.2s ease forwards;
+    transform: scaleX(0);
+  }
+
+  .progress-fill.orange { background: var(--splunk-orange); }
+  .progress-fill.blue { background: var(--splunk-blue-bright); }
+  .progress-fill.green { background: var(--splunk-green); }
+  .progress-fill.purple { background: var(--splunk-purple); }
+  .progress-fill.yellow { background: var(--splunk-yellow); }
+
+  .progress-pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+    white-space: nowrap;
+  }
+
+  /* ── HONORS ──────────────────────────────────── */
+  .honor-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--splunk-border);
+    align-items: flex-start;
+  }
+
+  .honor-item:last-child { border-bottom: none; }
+  .honor-item:first-child { padding-top: 0; }
+
+  .honor-icon {
+    font-size: 20px;
+    line-height: 1;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .honor-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--splunk-text-bright);
+    margin-bottom: 2px;
+  }
+
+  .honor-meta {
+    font-size: 12px;
+    color: var(--splunk-text-dim);
+  }
+
+  /* ── FOOTER / SEARCH BAR DECORATION ─────────── */
+  .search-decoration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--splunk-text-dim);
+    padding: 12px 18px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--splunk-border);
+    border-radius: 3px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-decoration .prompt {
+    color: var(--splunk-green);
+    flex-shrink: 0;
+  }
+
+  .search-decoration .query {
+    color: var(--splunk-orange);
+  }
+
+  .search-decoration .result {
+    color: var(--splunk-blue);
+    margin-left: auto;
+    font-size: 11px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  .site-footer {
+    border-top: 1px solid var(--splunk-border);
+    padding: 20px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--splunk-text-dim);
+    margin-top: 20px;
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.05s; }
+  .delay-2 { animation-delay: 0.1s; }
+  .delay-3 { animation-delay: 0.15s; }
+  .delay-4 { animation-delay: 0.2s; }
+  .delay-5 { animation-delay: 0.25s; }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 900px) {
+    .row-2, .row-3, .row-1-2, .row-2-1 {
+      grid-template-columns: 1fr;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .activity-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    .topbar-nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .activity-grid { grid-template-columns: 1fr; }
+    .main-wrapper { padding: 12px; }
+    .hero-section { padding: 24px 20px; }
+    .hero-name { font-size: 32px; }
+  }
+
+  /* ── SCROLLBAR ───────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--splunk-black); }
+  ::-webkit-scrollbar-thumb { background: var(--splunk-border-bright); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--splunk-orange); }
+
+  /* blinking cursor effect */
+  .cursor::after {
+    content: '▌';
+    color: var(--splunk-orange);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* inline code style */
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--splunk-border);
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: var(--splunk-blue);
+  }
+
+  .panel-section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--splunk-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    margin-top: 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(245,130,32,0.15);
+  }
+
+  .panel-section-label:first-child { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV BAR ───────────────────────────────────── -->
+<nav class="topbar">
+  <div class="topbar-left">
+    <div class="splunk-logo">
+      <div class="logo-icon"></div>
+      G.B.H.<span style="color:var(--splunk-text-dim);">SEC</span>
+    </div>
+    <div class="topbar-divider"></div>
+    <span class="topbar-app-name">Portfolio Dashboard · v2026</span>
+  </div>
+  <div class="topbar-nav">
+    <a href="#about" class="active">Overview</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#current">Currently Working On</a>
+  </div>
+  <div class="topbar-right">
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      OPEN TO WORK
+    </div>
+  </div>
+</nav>
+
+<!-- ── MAIN WRAPPER ──────────────────────────────────── -->
+<div class="main-wrapper">
+
+  <!-- ── SEARCH DECORATION ─────────────────────────── -->
+  <div class="search-decoration fade-in">
+    <span class="prompt">search&gt;</span>
+    <span class="query">index=talent sourcetype=cybersecurity_candidate | where gpa&gt;=3.0 AND skills="Python,Splunk,Wireshark" AND status="open_to_work"</span>
+    <span class="result">1 result found · 0.031s</span>
+  </div>
+
+  <!-- ── HERO ──────────────────────────────────────── -->
+  <section id="about" class="section-anchor"></section>
+  <div class="hero-section fade-in delay-1">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-label">Candidate Profile · Active</div>
+        <h1 class="hero-name">Gavin <span>B.</span> Hayes<span class="cursor"></span></h1>
+        <p class="hero-title">M.S. Cybersecurity Student · B.S. Information Systems University of Maryland Baltimore County</p>
+        <p class="hero-summary">
+          Recent graduate with a strong foundation in cybersecurity concepts, network analysis and monitoring, and troubleshooting. Proficient with traffic analysis
+          using Wireshark, SIEM event monitoring using Splunk, network device function
+          and protocols, and Python, Java, and SQL languages. I am preparing for my
+          CompTIA Security + certification with a current practice exam score of <strong style="color:var(--splunk-green)">83%</strong>, as well as completing
+          the Cybersecurity Defense Analyst course on Cisco’s Networking Academy. Actively seeking entry-level cybersecurity or IT roles where I can contribute to threat defense and grow in a real-world environment.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag blue">At Home Cyber Lab</span>
+          <span class="hero-tag blue">SIEM / Splunk</span>
+          <span class="hero-tag blue">Wireshark</span>
+          <span class="hero-tag green">Python · Java · SQL</span>
+          <span class="hero-tag orange">CompTIA Sec+ (in progress)</span>
+          <span class="hero-tag orange">Cisco Networking Academy Cyber Defense Analyst course (in progress)</span>
+        </div>
+        <div class="hero-contact">
+          <a href="tel:3015355040">(301)-535-5040</a>
+          <a href="mailto:gavinhayes14@proton.me">gavinhayes14@proton.me</a>
+          <a href="https://linkedin.com/in/gavinhayes2/" target="_blank">linkedin.com/in/gavinhayes2</a>
+          <a href="#">Waldorf, MD (DMV Area)</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-value">3.12</div>
+          <div class="stat-label">BS GPA · UMBC</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">3.5</div>
+          <div class="stat-label">Current MS GPA · UMBC</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--splunk-green);">83%</div>
+          <div class="stat-label">Sec+ Practice Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--splunk-blue);">8yr</div>
+          <div class="stat-label">Cyber Exposure</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--splunk-purple);">28+</div>
+          <div class="stat-label">LinkedIn Skills</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROW: EXPERIENCE + EDUCATION ───────────────── -->
+  <div id="experience" class="section-anchor"></div>
+  <div class="dashboard-row row-2-1 fade-in delay-2">
+
+    <div class="panel" data-color="orange">
+      <div class="panel-header">
+        <div class="panel-title"><div class="panel-title-dot"></div> Work Experience</div>
+        <span class="panel-badge">4 Positions</span>
+      </div>
+      <div class="panel-body">
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Service Advisor Assistant</div>
+              <div class="exp-company">Ford Motor Company</div>
+            </div>
+            <div class="exp-date">
+              Jan 2026 – Present
+              <span class="location">Waldorf, MD</span>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Collaborated with service advisors to efficiently process customer vehicles in a fast-paced environment.</li>
+            <li>Assisted with facility operations and upkeep, providing seamless working environment for service department staff.</li>
+            <li>Provided professional complimentary services directly with customers to increase satisfaction.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Front Desk Staff</div>
+              <div class="exp-company">Capital Clubhouse Ice Rink</div>
+            </div>
+            <div class="exp-date">
+              Aug 2020 – Jan 2025
+              <span class="location">Waldorf, MD</span>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Managed point-of-sale transactions and equipment rentals while providing customer support.</li>
+            <li>Assisted with facility operations and upkeep, ensuring a safe and organized customer experience.</li>
+          </ul>
+        </div>
+        
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Cyber Defense Training Camp</div>
+              <div class="exp-company">University of Maryland, College Park</div>
+            </div>
+            <div class="exp-date">
+              July 2019
+              <span class="location">College Park, MD</span>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Conducted penetration testing exercises in a controlled lab environment using Kali Linux.</li>
+            <li>Performed vulnerability scanning and exploitation on networks and endpoints; validated findings and documented results.</li>
+            <li>Placed <strong style="color:var(--splunk-orange)">2nd</strong> in a Capture the Flag (CTF) competition.</li>
+          </ul>
+        </div>
+        
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Vice President, Ice Hockey</div>
+              <div class="exp-company">University of Maryland, Baltimore County</div>
+            </div>
+            <div class="exp-date">
+              Aug 2022 – Aug 2025
+              <span class="location">Baltimore, MD</span>
+            </div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Led day-to-day team operations including scheduling, registration/compliance coordination, and equipment management.</li>
+            <li>Served as liaison between the team and university athletic administration; de-escalated issues and resolved conflicts to maintain program continuity.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION + HONORS stack -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div id="education" class="section-anchor"></div>
+      <div class="panel" data-color="blue">
+        <div class="panel-header">
+          <div class="panel-title"><div class="panel-title-dot blue"></div> Education</div>
+        </div>
+        <div class="panel-body">
+          <div class="edu-item">
+            <div class="edu-degree">Master of Science, Cybersecurity</div>
+            <div class="edu-school">University of Maryland, Baltimore County</div>
+            <div class="edu-meta">
+              <span class="edu-meta-item">Expected <span class="val">2027</span></span>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Science, Information Systems</div>
+            <div class="edu-school">University of Maryland, Baltimore County</div>
+            <div class="edu-meta">
+              <span class="edu-meta-item">May <span class="val">2025</span></span>
+              <span class="edu-meta-item">GPA: <span class="val">3.12</span></span>
+            </div>
+            <div class="edu-note">Activities: Vice President, UMBC Ice Hockey Team</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">High School Diploma, Cybersecurity/Networking</div>
+            <div class="edu-school">North Point High School for Science, Technology & Industry</div>
+            <div class="edu-meta">
+              <span class="edu-meta-item">May <span class="val">2021</span></span>
+              <span class="edu-meta-item">GPA: <span class="val">4.19</span></span>
+            </div>
+            <div class="edu-note">National Honors Society · Presidential Excellence Award</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><div class="panel-title-dot yellow"></div> Honors &amp; Accomplishments</div>
+        </div>
+        <div class="panel-body">
+          <div class="honor-item">
+            <div class="honor-icon">🏆</div>
+            <div>
+              <div class="honor-name">UMBC Dean's List</div>
+              <div class="honor-meta">University of Maryland, Baltimore County · May 2024</div>
+            </div>
+          </div>
+          <div class="honor-item">
+            <div class="honor-icon">🥈</div>
+            <div>
+              <div class="honor-name">2nd Place — CTF Competition</div>
+              <div class="honor-meta">Cyber Defense Training Camp, UMD College Park · 2019</div>
+            </div>
+          </div>
+          <div class="honor-item">
+            <div class="honor-icon">🎖️</div>
+            <div>
+              <div class="honor-name">Presidential Excellence Award</div>
+              <div class="honor-meta">POTUS / U.S. Dept. of Education · May 2021 · North Point High School</div>
+            </div>
+          </div>
+          <div class="honor-item">
+            <div class="honor-icon">🎓</div>
+            <div>
+              <div class="honor-name">National Honor Societies</div>
+              <div class="honor-meta">National Honor Society</div>
+              <div class="honor-meta">National Technical Honors Society</div>
+              <div class="honor-meta">National Juniors Honors Society</div>
+              <div class="honor-meta">National Society for High School Scholars</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROW: SKILLS ────────────────────────────────── -->
+  <div id="skills" class="section-anchor"></div>
+  <div class="dashboard-row row-2 fade-in delay-3">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><div class="panel-title-dot green"></div> Technical Skills</div>
+      </div>
+      <div class="panel-body">
+        <div class="panel-section-label">Security & Analysis</div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Wireshark</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">60%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Network Analysis</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:50%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">50%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Splunk / SIEM</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:40%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">40%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Kali Linux</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:15%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">15%</span></div>
+
+        <div class="panel-section-label">Infrastructure</div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Windows 10/11</span><div class="skill-bar-track"><div class="skill-bar-fill green" style="width:90%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">90%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Windows Server</span><div class="skill-bar-track"><div class="skill-bar-fill green" style="width:60%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">60%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">pfSense</span><div class="skill-bar-track"><div class="skill-bar-fill green" style="width:30%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">30%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Linux (Ubuntu)</span><div class="skill-bar-track"><div class="skill-bar-fill green" style="width:30%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">30%</span></div>
+      
+      <div class="panel-section-label">Programming</div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Python</span><div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:70%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">70%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Java</span><div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:70%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">70%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">SQL</span><div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:50%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">50%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">R (learning)</span><div class="skill-bar-track"><div class="skill-bar-fill blue" style="width:20%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">20%</span></div>
+      
+        <div class="panel-section-label">Concepts</div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Networking functions</span><div class="skill-bar-track"><div class="skill-bar-fill yellow" style="width:80%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">80%</span></div>
+        <div class="skill-bar-row"><span class="skill-bar-label">Protocols</span><div class="skill-bar-track"><div class="skill-bar-fill yellow" style="width:70%"></div></div><span style="font-family:monospace;font-size:11px;color:var(--splunk-text-dim)">70%</span></div>
+      </div>
+      
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><div class="panel-title-dot purple"></div> All Skills</div>
+        <span class="panel-badge">28 Skills</span>
+      </div>
+      <div class="panel-body">
+        <div class="panel-section-label">Security</div>
+        <div class="skill-tags" style="margin-bottom:14px">
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Network Traffic Analysis</span>
+          <span class="skill-tag">Log Analysis</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">SIEM</span>
+          <span class="skill-tag">Vulnerability Assessment</span>
+          <span class="skill-tag">Kali Linux</span>
+          <span class="skill-tag">Threat Detection</span>
+          <span class="skill-tag">Red/Blue Team</span>
+        </div>
+        <div class="panel-section-label">Programming &amp; Data</div>
+        <div class="skill-tags" style="margin-bottom:14px">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">R</span>
+        </div>
+        <div class="panel-section-label">Infrastructure &amp; OS</div>
+        <div class="skill-tags" style="margin-bottom:14px">
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">Windows 10/11</span>
+          <span class="skill-tag">Linux (Ubuntu)</span>
+          <span class="skill-tag">pfSense</span>
+          <span class="skill-tag">Network Segmentation</span>
+          <span class="skill-tag">Routing &amp; Switching</span>
+          <span class="skill-tag">VMs / Virtualization</span>
+        </div>
+        <div class="panel-section-label">Professional</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">Microsoft Word</span>
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">Microsoft PowerPoint</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Customer Service</span>
+          <span class="skill-tag">Leadership</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROW: CERTS + PROJECTS ─────────────────────── -->
+  <div id="certifications" class="section-anchor"></div>
+  <div class="dashboard-row row-1-2 fade-in delay-3">
+
+    <div class="panel" data-color="yellow">
+      <div class="panel-header">
+        <div class="panel-title"><div class="panel-title-dot yellow"></div> Certifications</div>
+      </div>
+      <div class="panel-body">
+        <div class="cert-item">
+          <div class="cert-icon">🔐</div>
+          <div>
+            <div class="cert-name">CompTIA Security+</div>
+            <div class="cert-meta">CompTIA · Exam: SY0-701</div>
+            <div class="cert-status in-progress">IN PROGRESS · 83% practice score</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🛡️</div>
+          <div>
+            <div class="cert-name">Cybersecurity Defense Analyst</div>
+            <div class="cert-meta">Cisco Networking Academy</div>
+            <div class="cert-status in-progress">IN PROGRESS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div id="projects" class="panel" data-color="blue">
+      <div class="panel-header">
+        <div class="panel-title"><div class="panel-title-dot blue"></div> Projects</div>
+      </div>
+      <div class="panel-body">
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-name">At-Home Cyber Lab Environment</div>
+            <div class="project-date">Jan 2026 – Present</div>
+          </div>
+          <p class="project-desc">
+            Designed and deployed a multi-system virtual home cybersecurity lab with pfSense, Windows Server, and Windows/Linux endpoint machines.
+            Configured network segmentation, routing, and firewall rules to simulate real-world enterprise network conditions.
+            Deployed and managed Splunk on a Linux server for centralized log collection, monitoring, and analysis.
+            Ingested and analyzed system, network, and security logs to identify anomalies, suspicious behavior, and potential threats.
+            Conducted controlled testing within the lab to evaluate logging visibility, detection capabilities, and system responses.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Splunk</span>
+            <span class="skill-tag">Windows Server</span>
+            <span class="skill-tag">pfSense</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Log Analysis</span>
+            <span class="skill-tag">Network Segmentation</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-name">Job Skills Presentation</div>
+            <div class="project-date">Apr 2024</div>
+          </div>
+          <p class="project-desc">
+            Developed a professional PowerPoint presentation for a UMBC course demonstrating job-readiness skills, communication strategies, and technical background in information systems.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft PowerPoint</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">UMBC</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <div class="project-name">CTF Competition — 2nd Place</div>
+            <div class="project-date">July 2019</div>
+          </div>
+          <p class="project-desc">
+            Participated in a Capture the Flag competition at UMD College Park's Cyber Defense Training Camp.
+            Applied penetration testing, vulnerability scanning, and exploitation techniques using Kali Linux to achieve 2nd place finish.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Kali Linux</span>
+            <span class="skill-tag">CTF</span>
+            <span class="skill-tag">Pen Testing</span>
+            <span class="skill-tag">Vulnerability Scanning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CURRENTLY WORKING ON ───────────────────────── -->
+  <div id="current" class="section-anchor"></div>
+  <div class="panel fade-in delay-4" style="margin-bottom:16px">
+    <div class="panel-header">
+      <div class="panel-title">
+        <div class="panel-title-dot" style="background:var(--splunk-orange); box-shadow: 0 0 6px var(--splunk-orange); animation: pulse 2s infinite;"></div>
+        Currently Working On
+      </div>
+      <span class="panel-badge">LIVE</span>
+    </div>
+    <div class="panel-body">
+      <div class="activity-grid">
+
+        <div class="activity-card orange">
+          <div class="activity-type">Certification Prep</div>
+          <div class="activity-title">CompTIA Security+ (SY0-701)</div>
+          <div class="activity-desc">
+            Active daily study sessions using Professor Messer materials, practice exams, and lab scenarios.
+            Current practice exam: <strong style="color:var(--splunk-green)">83%</strong>. Target: exam-ready by end of June.
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill orange" style="width:83%"></div></div>
+            <span class="progress-pct">83%</span>
+          </div>
+        </div>
+
+        <div class="activity-card blue">
+          <div class="activity-type">Home Lab / Infrastructure</div>
+          <div class="activity-title">At-Home Cyber Lab (Active Build)</div>
+          <div class="activity-desc">
+            Ongoing build-out of multi-system virtual lab with pfSense, Windows Server, Linux endpoints.
+            Currently tuning Splunk dashboards and expanding threat detection coverage with custom alerts.
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill blue" style="width:100%"></div></div>
+            <span class="progress-pct">Constantly Adapting</span>
+            <div class="progress-track"><div class="skill-bar-fill blue" style="width:100%"></div></div>
+          </div>
+        </div>
+
+        <div class="activity-card green">
+          <div class="activity-type">Cisco Networking Academy</div>
+          <div class="activity-title">Cybersecurity Defense Analyst Course</div>
+          <div class="activity-desc">
+            Working through Cisco's CDA course covering threat monitoring, incident response, and defense frameworks.
+            Building toward a stronger blue team foundation.
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill green" style="width:40%"></div></div>
+            <span class="progress-pct">40%</span>
+          </div>
+        </div>
+
+        <div class="activity-card purple">
+          <div class="activity-type">M.S. Graduate Studies</div>
+          <div class="activity-title">Master of Science in Cybersecurity — UMBC</div>
+          <div class="activity-desc">
+            Enrolled in UMBC's graduate Cybersecurity program, deepening formal knowledge in security architecture,
+            cryptography, and advanced threat analysis. Expected graduation: 2027.
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill purple" style="width:30%"></div></div>
+            <span class="progress-pct">Early Stage</span>
+          </div>
+        </div>
+
+        <div class="activity-card yellow">
+          <div class="activity-type">CTF / Practice Platforms</div>
+          <div class="activity-title">TryHackMe &amp; Hack The Box</div>
+          <div class="activity-desc">
+            Hands-on red vs. blue team exercises,
+            offensive/defensive skill-building, and real-world scenario experience.
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill yellow" style="width:100%"></div></div>
+            <span class="progress-pct">Planned Summer 2026</span>
+            <div class="progress-track"><div class="skill-bar-fill yellow" style="width:100%"></div></div>
+          </div>
+        </div>
+
+        <div class="activity-card blue" style="border-top-color: var(--splunk-blue)">
+          <div class="activity-type">Certification Advancement</div>
+          <div class="activity-title">What's next</div>
+          <div class="activity-desc">
+            Researching future certifications, comparing and contrasting benefits. Mainly looking at Net +, CEH, and SANs GIAC certifications
+          </div>
+          <div class="activity-progress">
+            <div class="progress-track"><div class="skill-bar-fill blue" style="width:100%"></div></div>
+            <span class="progress-pct">Future</span>
+            <div class="progress-track"><div class="skill-bar-fill blue" style="width:100%"></div></div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main-wrapper -->
+
+<footer class="site-footer fade-in delay-5">
+  <span style="color:var(--splunk-orange)">GAVIN B HAYES</span> · Cybersecurity Portfolio ·
+  <span style="color:var(--splunk-text-dim)">Built for performance with some added flair and finesse</span> ·
+  <a href="mailto:gavinhayes14@proton.me" style="color:var(--splunk-blue-bright); text-decoration:none;">gavinhayes14@proton.me</a> ·
+  <a href="https://linkedin.com/in/gavinhayes2/" target="_blank" style="color:var(--splunk-blue-bright); text-decoration:none;">LinkedIn</a>
+</footer>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('.section-anchor');
+  const navLinks = document.querySelectorAll('.topbar-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Animate skill bars on scroll into view
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.skill-bar-fill, .progress-fill');
+        fills.forEach(f => {
+          f.style.animation = 'none';
+          f.offsetHeight; // reflow
+          f.style.animation = '';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.panel').forEach(p => barObserver.observe(p));
+</script>
+</body>
+</html>
