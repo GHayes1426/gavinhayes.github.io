@@ -300,6 +300,32 @@
     gap: 12px;
     min-width: 200px;
   }
+  
+  .stat-link{
+    text-decoration:none;
+    color:inherit;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:baseline;
+    gap:10px;
+
+    transition:all 0.2s ease;
+    cursor:pointer;
+}
+
+.stat-link:hover{
+    transform:translateY(-3px);
+    border-color:var(--splunk-orange);
+    box-shadow:0 0 20px rgba(245,130,32,.15);
+}
+
+.stat-icon{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+}
 
   .stat-card {
     background: var(--splunk-panel-alt);
@@ -339,60 +365,52 @@
   .row-2-1 { grid-template-columns: 2fr 1fr; }
   .row-full { grid-template-columns: 1fr; }
 
-  /* ── PANEL ───────────────────────────────────── */
+  /* ── PANEL ─────────────────────────────────── */
   .panel {
-    background: var(--splunk-panel);
-    border: 1px solid var(--splunk-border);
-    border-radius: 4px;
-    overflow: hidden;
+    background: var(--splunk-panel); border: 1px solid var(--splunk-border);
+    border-radius: 4px; overflow: hidden; position: relative;
   }
+  /* colored gradient line at bottom — driven by data-color */
+  .panel::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    pointer-events: none;
+  }
+  .panel[data-color="orange"]::after { background: linear-gradient(90deg, var(--splunk-orange), transparent); }
+  .panel[data-color="blue"]::after   { background: linear-gradient(90deg, var(--splunk-blue-bright), transparent); }
+  .panel[data-color="green"]::after  { background: linear-gradient(90deg, var(--splunk-green), transparent); }
+  .panel[data-color="purple"]::after { background: linear-gradient(90deg, var(--splunk-purple), transparent); }
+  .panel[data-color="yellow"]::after { background: linear-gradient(90deg, var(--splunk-yellow), transparent); }
+  .panel[data-color="red"]::after    { background: linear-gradient(90deg, var(--splunk-red), transparent); }
 
   .panel-header {
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--splunk-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 12px 18px; border-bottom: 1px solid var(--splunk-border);
+    display: flex; align-items: center; justify-content: space-between;
     background: rgba(0,0,0,0.2);
   }
-
   .panel-title {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--splunk-text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+    color: var(--splunk-text-dim); text-transform: uppercase; letter-spacing: 1.5px;
+    display: flex; align-items: center; gap: 8px;
   }
-
-  .panel-title-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--splunk-orange);
-  }
-
-  .panel-title-dot.blue { background: var(--splunk-blue-bright); }
-  .panel-title-dot.green { background: var(--splunk-green); }
+  .panel-title-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--splunk-orange); }
+  .panel-title-dot.blue   { background: var(--splunk-blue-bright); }
+  .panel-title-dot.green  { background: var(--splunk-green); }
   .panel-title-dot.purple { background: var(--splunk-purple); }
   .panel-title-dot.yellow { background: var(--splunk-yellow); }
-  .panel-title-dot.red { background: var(--splunk-red); }
-
+  .panel-title-dot.red    { background: var(--splunk-red); }
   .panel-badge {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 2px;
-    background: rgba(245,130,32,0.15);
-    color: var(--splunk-orange);
-    border: 1px solid rgba(245,130,32,0.25);
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 2px 8px;
+    border-radius: 2px; background: rgba(245,130,32,0.15);
+    color: var(--splunk-orange); border: 1px solid rgba(245,130,32,0.25);
   }
-
-  .panel-body {
-    padding: 18px;
+  .panel-body { padding: 18px; }
+  .panel-section-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--splunk-orange);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 10px; margin-top: 16px; padding-bottom: 6px;
+    border-bottom: 1px solid rgba(245,130,32,0.15);
   }
+  .panel-section-label:first-child { margin-top: 0; }
 
   /* ── SECTION HEADERS ─────────────────────────── */
   .section-anchor { 
@@ -960,7 +978,7 @@
       G.B.H.<span style="color:var(--splunk-text-dim);">SEC</span>
     </div>
     <div class="topbar-divider"></div>
-    <span class="topbar-app-name">Portfolio Dashboard · v2026</span>
+    <span class="topbar-app-name">&nbsp;Dashboard · v2026</span>
   </div>
   <div class="topbar-nav">
     <a href="#about" class="active">Overview</a>
@@ -984,8 +1002,8 @@
   <!-- ── SEARCH DECORATION ─────────────────────────── -->
   <div class="search-decoration fade-in">
     <span class="prompt">search&gt;</span>
-    <span class="query">index=talent sourcetype=cybersecurity_candidate | where gpa&gt;=3.0 AND skills="Python,Splunk,Wireshark" AND status="open_to_work"</span>
-    <span class="result">1 result found · 0.031s</span>
+    <span class="query">index=talent sourcetype=cyber_candidate | where gpa&gt;=3.0 AND skills="Splunk,Wireshark" AND status="open_to_work"</span>
+    <span class="result">1 result found · 0.01s</span>
   </div>
 
   <!-- ── HERO ──────────────────────────────────────── -->
@@ -1009,37 +1027,43 @@
           <span class="hero-tag blue">Wireshark</span>
           <span class="hero-tag green">Python · Java · SQL</span>
           <span class="hero-tag orange">CompTIA Sec+ (in progress)</span>
-          <span class="hero-tag orange">Cisco Networking Academy Cyber Defense Analyst course (in progress)</span>
+          <span class="hero-tag orange">Cisco Networking Academy Cyber Defense Analyst (in progress)</span>
         </div>
         <div class="hero-contact">
           <a href="tel:3015355040">(301)-535-5040</a>
           <a href="mailto:gavinhayes14@proton.me">gavinhayes14@proton.me</a>
-          <a href="https://linkedin.com/in/gavinhayes2/" target="_blank">linkedin.com/in/gavinhayes2</a>
           <a href="#">Waldorf, MD (DMV Area)</a>
         </div>
       </div>
       <div class="hero-stats">
-        <div class="stat-card">
-          <div class="stat-value">3.12</div>
-          <div class="stat-label">BS GPA · UMBC</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value">3.5</div>
-          <div class="stat-label">Current MS GPA · UMBC</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" style="color:var(--splunk-green);">83%</div>
-          <div class="stat-label">Sec+ Practice Score</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" style="color:var(--splunk-blue);">8yr</div>
-          <div class="stat-label">Cyber Exposure</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" style="color:var(--splunk-purple);">28+</div>
-          <div class="stat-label">LinkedIn Skills</div>
-        </div>
-      </div>
+
+  <a href="Gavin_Hayes_Resume.pdf" download class="stat-card stat-link">
+    <img
+  src="https://img.icons8.com/?size=100&id=23877&format=png&color=f58220"
+  class="stat-icon"
+  alt="Resume">
+    <div class="stat-label">Download Resume</div>
+</a>
+
+  <a href="https://linkedin.com/in/gavinhayes2"
+   target="_blank"
+   class="stat-card stat-link">
+
+    <img src="https://img.icons8.com/?size=100&id=447&format=png&color=f58220" class="stat-icon">
+
+    <div class="stat-label">LinkedIn Profile</div>
+
+</a>
+
+  <a href="https://www.youtube.com/@GHayesCyberDemonstrations"
+     target="_blank"
+     class="stat-card stat-link">
+    <img src="https://img.icons8.com/?size=100&id=37325&format=png&color=f58220" class="stat-icon">
+    <div class="stat-label">YouTube Channel</div>
+  </a>
+
+
+</div>
     </div>
   </div>
 
@@ -1161,7 +1185,7 @@
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel fade-in" data-color="yellow">
         <div class="panel-header">
           <div class="panel-title"><div class="panel-title-dot yellow"></div> Honors &amp; Accomplishments</div>
         </div>
@@ -1205,7 +1229,7 @@
   <!-- ── ROW: SKILLS ────────────────────────────────── -->
   <div id="skills" class="section-anchor"></div>
   <div class="dashboard-row row-2 fade-in delay-3">
-    <div class="panel">
+    <div class="panel fade-in" data-color="green">
       <div class="panel-header">
         <div class="panel-title"><div class="panel-title-dot green"></div> Technical Skills</div>
       </div>
@@ -1235,7 +1259,7 @@
       
     </div>
 
-    <div class="panel">
+    <div class="panel fade-in" data-color="purple">
       <div class="panel-header">
         <div class="panel-title"><div class="panel-title-dot purple"></div> All Skills</div>
         <span class="panel-badge">28 Skills</span>
